@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def rotation(theta) -> np.ndarray:
-    theta = np.pi / 180 * theta
+    theta = np.deg2rad(theta)
     return np.array(
         (
             (np.cos(theta), -np.sin(theta)),
