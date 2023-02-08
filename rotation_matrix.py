@@ -22,7 +22,7 @@ thetas = np.arange(0, 135, step=dt)
 x_p = np.empty_like(thetas, dtype=float)
 y_p = np.empty_like(thetas, dtype=float)
 
-for i in range(1, thetas.size):
+for i in range(0, thetas.size):
     rot = rotation(i) @ p_0
     x_p[i], y_p[i] = rot[0], rot[1]
 
