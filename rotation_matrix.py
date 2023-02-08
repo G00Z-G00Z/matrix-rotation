@@ -21,10 +21,14 @@ thetas = np.arange(0, 135, step=dt)
 
 x_p = np.empty_like(thetas, dtype=float)
 y_p = np.empty_like(thetas, dtype=float)
+rotation_matrix = rotation(dt)
 
-for i in range(0, thetas.size):
-    rot = rotation(i) @ p_0
-    x_p[i], y_p[i] = rot[0], rot[1]
+x_p[0], y_p[0] = p_0[0], p_0[1]
+
+for i in range(1, thetas.size):
+    X = rotation_matrix @ p_0
+    x_p[i], y_p[i] = X[0], X[1]
+    p_0 = X
 
 df = pd.DataFrame(
     {
