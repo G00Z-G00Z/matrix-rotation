@@ -13,25 +13,25 @@ parser.add_argument(
     "-initial_angle",
     type=float,
     default=0.0,
-    help="Initial angle where the function sin() will be evaluated",
+    help="Initial angle",
 )
 parser.add_argument(
     "-final_angle",
     type=float,
     default=6.28,
-    help="Final angle where the function sin() will be evaluated",
+    help="Final angle",
 )
 parser.add_argument(
-    "-n_samples",
+    "-rotation",
     type=int,
-    default=1000,
-    help="number of samples bewteen initial_angle and final_angle",
+    default=1,
+    help="Constant rotation to rotate by",
 )
 args = parser.parse_args()
 
 
 # Initialise a numpy-type list
-theta = np.linspace(start=args.initial_angle, stop=args.final_angle, num=args.n_samples)
+theta = np.arange(start=args.initial_angle, stop=args.final_angle, step=args.rotation)
 
 # Evaluate the function 'sin' on 'x'
 y = args.amplitude * np.sin(theta)
