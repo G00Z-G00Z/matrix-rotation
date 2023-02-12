@@ -18,7 +18,7 @@ pd.set_option("display.float_format", "{:,.2f}".format)
 # Parse user's arguments from command line
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "-file_name",
+    "-filename",
     type=str,
     default="robotic-arm.png",
     help="Name of the filename to save the file",
@@ -114,4 +114,4 @@ limit_axis = a1 * 1.5
 plt.xlim((-limit_axis, limit_axis))
 plt.ylim((-limit_axis, limit_axis))
 plt.grid(True)
-plt.savefig("img/robotic-arm.png")
+plt.savefig(f"img/{args.filename}")
