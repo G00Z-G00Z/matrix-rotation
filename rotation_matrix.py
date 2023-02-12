@@ -71,9 +71,11 @@ print(df.head())
 
 plt.figure()
 
-for coord in zip(x_p, y_p):
-    plt.plot(origin, linestyle="--")
-    plt.plot(coord, linestyle="--")
+# Plot the robots arm on each iteration, starting from the origin, to the point formed by x_p and y_p
+for i in range(thetas.size):
+    plt.plot([origin[0], x_p[i]], [origin[1], y_p[i]], "k-")
+    plt.plot(x_p[i], y_p[i], "ro")
+    plt.plot(origin[0], origin[1], "bo")
 
 
 plt.title(
