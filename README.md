@@ -1,5 +1,15 @@
 # Rotation arm robot
 
+## Program 
+
+This program displays the rotation of a robotic arm. Use the command in this form to create the display:
+
+```bash
+./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25 -filename robo1.png
+```
+
+![ Robotic arm ](./img/robotic-arm.png)
+
 ## Learning objectives
 In this assignment, you will apply pure-rotation transformations to a single-link robotic arm to
 predict the position of its end effector - see Figure 1.
@@ -23,14 +33,28 @@ predict the position of its end effector - see Figure 1.
 
 ## Results and analysis
 
+**Case 1:** 
 
-
-## Program 
-
-This program displays the rotation of a robotic arm. Use the command in this form to create the display:
-
-```bash
-./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25 -filename robo1.png
+```
+./rotation_matrix.py -initial_angle 0 -final_angle 30 -rotation 3 -filename rotation1.png
 ```
 
-![ Robotic arm ](./img/robotic-arm.png)
+![rotation 1](./img/rotation1.png)
+
+**Case 2:** 
+
+```
+./rotation_matrix.py -initial_angle 30 -final_angle 110 -rotation 10 -filename rotation2.png
+```
+
+![rotation 2](./img/rotation2.png)
+
+**Case 3:** 
+
+```
+./rotation_matrix.py -initial_angle 90 -final_angle 200 -rotation 20 -filename rotation3.png
+```
+
+![rotation 3](./img/rotation3.png)
+
+
