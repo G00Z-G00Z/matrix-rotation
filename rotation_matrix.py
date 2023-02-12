@@ -19,13 +19,13 @@ parser.add_argument(
 parser.add_argument(
     "-final_angle",
     type=float,
-    default=360,
+    default=150,
     help="Final angle",
 )
 parser.add_argument(
     "-rotation",
     type=int,
-    default=1,
+    default=10,
     help="Constant rotation to rotate by",
 )
 args = parser.parse_args()
@@ -43,17 +43,13 @@ def rotation_deg(theta) -> np.ndarray:
 
 
 a1 = 0.30  # m
+origin = np.array([0, 0], dtype=float)
+rotation_matrix = rotation_deg(args.rotation)
 p_0 = rotation_deg(args.initial_angle) @ np.array([a1, 0], dtype=float)
-dt: int = args.rotation
-
-thetas = np.arange(
-    start=args.initial_angle, stop=args.final_angle, step=dt, dtype=float
-)
-
+thetas = np.arange(start=args.initial_angle, stop=args.final_angle, step=args.rotation)
 x_p: np.ndarray = np.empty_like(thetas)
 y_p: np.ndarray = np.empty_like(thetas)
 
-rotation_matrix = rotation_deg(dt)
 
 x_p[0], y_p[0] = p_0[0], p_0[1]
 
@@ -74,8 +70,19 @@ df = pd.DataFrame(
 print(df.head())
 
 plt.figure()
-plt.plot(x_p, y_p)
-plt.title("Ejercicio")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.show()
+
+for coord in zip(x_p, y_p):
+    plt.plot(origin, linestyle="--")
+    plt.plot(coord, linestyle="--")
+
+
+plt.title(
+    rf"Robotic arm rotation $\theta_0 = {args.initial_angle}°,\Delta\theta = {args.rotation}°, \theta_f = {args.final_angle}°$"
+)
+plt.xlabel(r"$x_g$")
+plt.ylabel(r"$y_g$")
+limit_axis = a1 * 1.5
+plt.xlim((-limit_axis, limit_axis))
+plt.ylim((-limit_axis, limit_axis))
+plt.grid(True)
+plt.savefig("cosa.png")
