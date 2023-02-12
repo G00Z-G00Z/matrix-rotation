@@ -1,8 +1,9 @@
-# Import standard libraries
 import argparse
+from typing import List
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 # Parse user's arguments from command line
 parser = argparse.ArgumentParser()
@@ -18,7 +19,7 @@ parser.add_argument(
 parser.add_argument(
     "-final_angle",
     type=float,
-    default=6.28,
+    default=360,
     help="Final angle",
 )
 parser.add_argument(
@@ -30,43 +31,29 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-# Initialise a numpy-type list
-theta = np.arange(start=args.initial_angle, stop=args.final_angle, step=args.rotation)
-
-# Evaluate the function 'sin' on 'x'
-y = args.amplitude * np.sin(theta)
-
-# Visualise the function 'y = sin(x)'
-plt.figure(1)
-plt.plot(theta, y, linewidth=2)
-plt.title(r"Function $y=\sin(\theta)$ ")
-plt.xlabel(r"$\theta$")
-plt.ylabel("y")
-plt.show()
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-
-
-def rotation(theta) -> np.ndarray:
+def rotation_deg(theta) -> np.ndarray:
     theta = np.deg2rad(theta)
     return np.array(
         (
             (np.cos(theta), -np.sin(theta)),
             (np.sin(theta), np.cos(theta)),
-        )
+        ),
+        dtype=float,
     )
 
 
 a1 = 0.30  # m
-p_0 = np.array([a1, 0], dtype=float)
-dt = 1.0
+p_0 = rotation_deg(args.initial_angle) @ np.array([a1, 0], dtype=float)
+dt: int = args.rotation
 
-thetas = np.arange(0, 135, step=dt)
+thetas = np.arange(
+    start=args.initial_angle, stop=args.final_angle, step=dt, dtype=float
+)
 
-x_p = np.empty_like(thetas, dtype=float)
-y_p = np.empty_like(thetas, dtype=float)
-rotation_matrix = rotation(dt)
+x_p: np.ndarray = np.empty_like(thetas)
+y_p: np.ndarray = np.empty_like(thetas)
+
+rotation_matrix = rotation_deg(dt)
 
 x_p[0], y_p[0] = p_0[0], p_0[1]
 
@@ -75,9 +62,9 @@ for i in range(1, thetas.size):
     x_p[i], y_p[i] = X[0], X[1]
     p_0 = X
 
+
 df = pd.DataFrame(
     {
-        "k": np.arange(0, 135),
         "theta": thetas,
         "x_p": x_p,
         "y_p": y_p,
