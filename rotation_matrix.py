@@ -72,12 +72,11 @@ print(df.head())
 
 plt.figure()
 
-# Plot the robots arm on each iteration, starting from the origin, to the point formed by x_p and y_p
-for i in range(thetas.size):
-    plt.plot([origin[0], x_p[i]], [origin[1], y_p[i]], "k-")
-    plt.plot(x_p[i], y_p[i], "ro")
-    plt.plot(origin[0], origin[1], "bo")
+for point in zip(x_p, y_p):
+    plt.plot([origin[0], point[0]], [origin[1], point[1]], "k--")
+    plt.plot(point[0], point[1], "ro")
 
+plt.plot(origin[0], origin[1], "bo")
 
 plt.title(
     rf"Robotic arm rotation $\theta_0 = {args.initial_angle}°,\Delta\theta = {args.rotation}°, \theta_f = {args.final_angle}°$"
