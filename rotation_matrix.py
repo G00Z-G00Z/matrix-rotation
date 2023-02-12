@@ -18,6 +18,12 @@ pd.set_option("display.float_format", "{:,.2f}".format)
 # Parse user's arguments from command line
 parser = argparse.ArgumentParser()
 parser.add_argument(
+    "-file_name",
+    type=str,
+    default="robotic-arm.png",
+    help="Name of the filename to save the file",
+)
+parser.add_argument(
     "-initial_angle",
     type=float,
     default=0.0,
