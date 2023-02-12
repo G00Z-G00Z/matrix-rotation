@@ -57,4 +57,10 @@ predict the position of its end effector - see Figure 1.
 
 ![rotation 3](./img/rotation3.png)
 
+As you can see, each iteration, the rotation matrix rotates the point around the origin by a constant amount, so if we applied iteratively the operation, we could reach the final angle. 
+Also, the same effect would have happened if we applied a rotation matrix with the final angle once, because the sum of the rotations equal the final rotation. 
+
+# Conclusions
+
+The rotation matrix allows to modify vectors and rotate them in a global context. This is very useful with robotic arms, because they could be applied several times and sum up to account for every arm and joint of the robot
 
