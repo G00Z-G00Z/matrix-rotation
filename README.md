@@ -30,7 +30,7 @@ predict the position of its end effector - see Figure 1.
 This program displays the rotation of a robotic arm. Use the command in this form to create the display:
 
 ```bash
-./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25"
+./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25 -filename robo1.png
 ```
 
 ![ Robotic arm ](./img/robotic-arm.png)

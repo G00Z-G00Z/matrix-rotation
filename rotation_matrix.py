@@ -3,7 +3,7 @@
     Author: Eduardo Gomez
     Title: Robotic arm movement
     Usage:
-        ./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25"
+        ./rotation_matrix.py -initial_angle 90 -final_angle 420 -rotation 25 -filename robo1.png
 """
 import argparse
 
